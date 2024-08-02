@@ -1,10 +1,13 @@
+
+--Create User Posts Table
+
 CREATE TABLE Posts (
     post_id INT PRIMARY KEY,
     post_content TEXT,
     post_date TIMESTAMP
 );
 Select * From POSTS
-	
+--Insert values into Post Table 
 INSERT INTO Posts (post_id, post_content, post_date)
 VALUES
     (1, 'Mountain...', '2024-07-25 10:00:00'),
@@ -41,6 +44,7 @@ VALUES
 
 Select * From UserReactions
 
+--1 .Retrieving the comprehensive count of likes, comments, and shares garnered by a specific post identified by its unique post ID:	
 SELECT
     p.post_id,
     p.post_content,
@@ -55,7 +59,7 @@ WHERE
     p.post_id = 4 -- Replace with the desired post_id
 GROUP BY
     p.post_id, p.post_content;
-
+--Calculating the mean number of reactions, encompassing likes, comments, and shares, per distinct user within a designated time period:
 SELECT
     DATE(ur.reaction_date) AS reaction_day,
     COUNT(DISTINCT ur.user_id) AS distinct_users,
@@ -67,6 +71,8 @@ WHERE
     ur.reaction_date BETWEEN '2024-07-26' AND '2024-08-31' -- Replace with desired time period
 GROUP BY
     reaction_day;
+--Identifying the three most engaging posts, measured by the aggregate sum of reactions, within the preceding week:
+
 
 SELECT
     p.post_id,
